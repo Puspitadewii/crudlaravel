@@ -8,10 +8,21 @@
 					<h4 class="mb-0">Edit</h4>
 				</div>
 				<div class="card-body">
-					<form action="{{ route('user.update')}}" method="post">
+					<form action="{{ route('user.update')}}" method="post" enctype="multipart/form-data">
 						@csrf
 							{{method_field('PUT')}}
 							<input type="hidden" name="id" value="{{ $user->id }}">
+
+
+						<div class="form-group">
+							<label for="profile" class="col-form-label">Profile</label>
+							<input type="file" class="form-control @error('profile') is-invalid @enderror" id="profile" name="profile" value="{{ $user->profile }}">
+							@error('name')
+							<span class="invalid-feedback">{{$message}}</span>
+							@enderror
+						</div>
+
+
 						<div class="form-group">
 							<label for="name" class="col-form-label">Name</label>
 							<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $user->name }}">
@@ -71,7 +82,7 @@
 
 						<div class="form-group">
 							<label for="name" class="col-form-label">Password Confirmation</label>
-							<input type="password" class="form-control"  id="password" name="password_comfirmation">
+							<input type="password" class="form-control"  id="password" name="password_confirmation">
 							
 						</div>
 

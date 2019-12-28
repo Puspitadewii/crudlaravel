@@ -8,12 +8,19 @@
 					<h4 class="mb-0">Create user</h4>
 				</div>
 				<div class="card-body">
-					<form action="{{ route('user.store')}}" method="post">
+					<form action="{{ route('user.store')}}" method="post" enctype="multipart/form-data">
 						@csrf
+						<div class="form-group">
+							<label for="profile" class="col-form-label">Profile</label>
+							<input type="file" class="form-control form-control-file @error('profile') is-invalid @enderror" id="profile" name="profile" accept="image/">
+							@error('profile')
+							<span class="invalid-feedback">{{$message}}</span>
+							@enderror
+						</div>
 
 						<div class="form-group">
 							<label for="name" class="col-form-label">Name</label>
-							<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name')}}">
+							<input type="text" class="form-control @error('name') is-invalid @enderror" id="email" name="name" value="{{ old('name')}}">
 							@error('name')
 							<span class="invalid-feedback">{{$message}}</span>
 							@enderror
@@ -28,7 +35,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="name" class="col-form-label">Address</label>
+							<label for="address" class="col-form-label">Address</label>
 							<input type="text" class="form-control @error('address') is-invalid @enderror" id="addres" name="address" value="{{ old('address')}}">
 							@error('address')
 							<span class="invalid-feedback">{{$message}}</span>
@@ -36,7 +43,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="name" class="col-form-label">Born</label>
+							<label for="born" class="col-form-label">Born</label>
 							<input type="date" class="form-control @error('hobby') is-invalid @enderror" id="born" name="born" value="{{ old('born')}}">
 							@error('born')
 							<span class="invalid-feedback">{{$message}}</span>
@@ -70,7 +77,7 @@
 
 						<div class="form-group">
 							<label for="name" class="col-form-label">Password Confirmation</label>
-							<input type="password" class="form-control"  id="password" name="password_comfirmation">
+							<input type="password" class="form-control"  id="password" name="password_confirmation">
 							
 						</div>
 
